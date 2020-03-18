@@ -298,6 +298,20 @@ routes.get('/approvedauthor', (req, res) => {
     }));
 })
 
+// Route for Top 3 Approved Authors
+routes.get('/topauthor', (req, res) => {
+  fetchController.getTopAuthor()
+    .then(result => res.status(200).json({
+      status: "success",
+      msg: "Top 3 Approved Author Fetch Successfully",
+      result: result
+    }))
+    .catch(err => res.status(200).json({
+      status: "error",
+      payload: err
+    }));
+})
+
 // Route for Getting Single Approved Author
 routes.get('/approvedauthor/:id', (req, res) => {
   fetchController.getSingleApprovedAuthor(req.params.id)

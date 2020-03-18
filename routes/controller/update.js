@@ -31,6 +31,19 @@ class UpdateController {
     })
   }
 
+    // Update Like on a Blog
+  updateApprovedBlogCountOfAuthor(id) {
+    console.log('hitfefe', id)
+    return new Promise((resolve, reject) => {
+      ApprovedAuthor.update(
+        { _id: id },
+        { $inc: { 'approved_blogs_count': 1 } })
+        .then(response => { console.log('approved blog Incremented blog'); })
+        .catch(err => console.log(err));
+    })
+  }
+
+
   // Update Blog to Home The Home Page Blogs ( 3 Blogs )
   updateHomeBlog(value) {
     console.log('hitfefe', value)

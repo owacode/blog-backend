@@ -123,7 +123,7 @@ class AdderOperationController {
             blogid: result._id,
           }
           updateController.addUnapproveIdToMainBlog(id);
-          AdminMailForBlog(value);
+          // AdminMailForBlog(value);
           resolve(result);
         })
         .catch(err => reject(err));
@@ -167,6 +167,7 @@ class AdderOperationController {
           }
           // console.log(id,'author details0');
           this.addApprovedBlogToUser(id);
+          // updateController.updateApprovedBlogCountOfAuthor(result.author_id);
           resolve(result)
         })
         .catch(err => reject(err));
