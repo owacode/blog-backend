@@ -193,7 +193,7 @@ routes.post('/approve-blog', (req, res) => {
 // Route for Saved Blogs
 routes.post('/save-blog', upload.single('image'), async (req, res) => {
   console.log(req.body, 'catehitttt');
-    const result = await cloudinary.v2.uploader.upload(req.file.path)
+  const result = await cloudinary.v2.uploader.upload(req.file.path)
     .catch((err) => {
       new Promise(() => { throw new Error('exception!'); });
       console.log(err);
@@ -216,7 +216,7 @@ routes.post('/save-blog', upload.single('image'), async (req, res) => {
 // Route for Saved Blogs
 routes.patch('/updateimage-saved-blog', upload.single('image'), async (req, res) => {
   console.log(req.body, 'updated saved hit');
-    const result = await cloudinary.v2.uploader.upload(req.file.path)
+  const result = await cloudinary.v2.uploader.upload(req.file.path)
     .catch((err) => {
       new Promise(() => { throw new Error('exception!'); });
       console.log(err);
@@ -326,9 +326,9 @@ routes.post('/update-authorprofile', upload.single('image'), async (req, res) =>
 })
 
 // Route for UnApproved Author Profile
-routes.post('/update-approveprofile-with-image',upload.single('imageurl'), async (req, res) => {
+routes.post('/update-approveprofile-with-image', upload.single('imageurl'), async (req, res) => {
   console.log(req.body);
-    const result = await cloudinary.v2.uploader.upload(req.file.path)
+  const result = await cloudinary.v2.uploader.upload(req.file.path)
     .catch((err) => {
       new Promise(() => { throw new Error('exception!'); });
       console.log(err);
@@ -456,33 +456,33 @@ routes.get('/activate/:token', (req, res) => {
     })
 })
 
-routes.post('/reset-password', (req, res)=> {
+routes.post('/reset-password', (req, res) => {
   console.log(req.body);
   updateController.recoverPassword(req.body.email)
-  .then(result => res.json({
-    status: 'success',
-    msg: 'Check you email',
-    result: result
-  }))
-  .catch(err=> res.json({
-    status: 'error',
-    msg: 'Email not Exist',
-    error: err
-  }))
+    .then(result => res.json({
+      status: 'success',
+      msg: 'Check you email',
+      result: result
+    }))
+    .catch(err => res.json({
+      status: 'error',
+      msg: 'Email not Exist',
+      error: err
+    }))
 })
 
-routes.post('/update-password',( req, res)=>{
+routes.post('/update-password', (req, res) => {
   console.log(req.body);
   updateController.updatePassword(req.body)
-  .then(result => res.json({
-    status: 'success',
-    msg: 'Password Update Successfully',
-    result: result
-  }))
-  .catch(err=> res.json({
-    status: 'error',
-    msg: 'Error in Updating Password',
-    error: err
-  }))
+    .then(result => res.json({
+      status: 'success',
+      msg: 'Password Update Successfully',
+      result: result
+    }))
+    .catch(err => res.json({
+      status: 'error',
+      msg: 'Error in Updating Password',
+      error: err
+    }))
 })
 module.exports = routes;
