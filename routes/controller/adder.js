@@ -16,10 +16,10 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const nodeoutlook = require('nodejs-nodemailer-outlook');
 const sgMail = require('@sendgrid/mail');
-// const nodemailerAuthCredential = {
-//   user: "OWACODE@onewateracademy.org",
-//   pass: "Panda@21"
-// }
+const nodemailerAuthCredential = {
+  user: "OWACODE@onewateracademy.org",
+  pass: "Panda@21"
+}
 
 sgMail.setApiKey('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');
 let token;
