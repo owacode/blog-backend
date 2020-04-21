@@ -10,6 +10,8 @@ const blog = mongoose.Schema({
   category:[],
   date_added:{type: String},
   desc:{type: String,required:true},
+  contributor_name:{type: String,required:true},
+  contributor_company:{type: String,required:true},
   likes:[],
   image:{type: String,required:true}
 });

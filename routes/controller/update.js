@@ -53,6 +53,8 @@ class UpdateController {
         {
           title: value.title,
           category: value.category,
+          contributor_name: value.contributor_name,
+          contributor_company: value.contributor_company,
           date_added: getTime(),
           desc: value.desc,
           image: value.imageurl
