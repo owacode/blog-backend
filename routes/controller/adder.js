@@ -477,43 +477,70 @@ function saltHashPassword(userpassword) {
 
 function verifyUser(email) {
   console.log('$$$$$$$$$', email, token);
-  const msg = {
-    from: ' OneWater <owa@onewaterxchange.org> ',
-    to: email,
-    subject: "Verify Account✔", // Subject line
-    text: "Verify your Email for OneWater Author",
-    html: `
-      <h4>Hello!<h4>
-      <p>Thank you for signing up and joining the OneWater Academy.Please click on the link to Verify Your Account <a href="https://onewater-blogapi.herokuapp.com/activate/` + token + `">https://onewater-blog-api.herokuapp.com/activate/` + token + `
-      </a></p>
-      `, // html body
-  };
-  sgMail.send(msg)
-  .then(result=> {
-    console.log(result);
-  })
-  .catch(err=> {
-    console.log(err);
-  });
+  nodeoutlook.sendEmail({
+    auth: nodemailerAuthCredential,
+      from:' "OneWater " <OWACODE@onewateracademy.org> ',
+      to: email,
+      subject: "Verify Account✔", // Subject line
+      text: "Verify your Email for OneWater Author",
+      html: `
+        <h4>Hello!<h4>
+        <p>Thank you for signing up and joining the OneWater Academy.Please click on the link to Verify Your Account <a href="https://onewater-blogapi.herokuapp.com/activate/` + token + `">https://onewater-blog-api.herokuapp.com/activate/` + token + `
+        </a></p>
+        `, // html body
+    onError: (e) => console.log(e),
+    onSuccess: (i) => console.log(i)
+});
+  // const msg = {
+  //   from: ' OneWater <owa@onewaterxchange.org> ',
+  //   to: email,
+  //   subject: "Verify Account✔", // Subject line
+  //   text: "Verify your Email for OneWater Author",
+  //   html: `
+  //     <h4>Hello!<h4>
+  //     <p>Thank you for signing up and joining the OneWater Academy.Please click on the link to Verify Your Account <a href="https://onewater-blogapi.herokuapp.com/activate/` + token + `">https://onewater-blog-api.herokuapp.com/activate/` + token + `
+  //     </a></p>
+  //     `, // html body
+  // };
+  // sgMail.send(msg)
+  // .then(result=> {
+  //   console.log(result);
+  // })
+  // .catch(err=> {
+  //   console.log(err);
+  // });
 }
 
 function approveAuthorMail(email) {
   console.log('$$$$$$$$$', email);
-  const msg = {
-    from: ' OneWater <owa@onewaterxchange.org> ',
-    to: email,
-    subject: "Profile Approved✔", // Subject line
-    text: "Your Profile has been approved for Author",
-    html: `
-      <h4> Congratulations Hello Welcome to OneWater Learning Academy<h4>
-      <p>Your Profile has been approved for Author. You can now Post Blogs. Login and Add Your Blog.
-      `, // html body
-  };
-  sgMail.send(msg)
-  .then(result=> {
-    console.log(result);
-  })
-  .catch(err=> {
-    console.log(err);
-  });
+  nodeoutlook.sendEmail({
+    auth: nodemailerAuthCredential,
+      from:' "OneWater " <OWACODE@onewateracademy.org> ',
+      to: email,
+      subject: "Profile Approved✔", // Subject line
+      text: "Your Profile has been approved for Author",
+      html: `
+        <h4> Congratulations Hello Welcome to OneWater Learning Academy<h4>
+        <p>Your Profile has been approved for Author. You can now Post Blogs. Login and Add Your Blog.
+        `, // html body
+    onError: (e) => console.log(e),
+    onSuccess: (i) => console.log(i)
+});
+  // const msg = {
+  //   from: ' OneWater <owa@onewaterxchange.org> ',
+  //   to: email,
+  //   subject: "Profile Approved✔", // Subject line
+  //   text: "Your Profile has been approved for Author",
+  //   html: `
+  //     <h4> Congratulations Hello Welcome to OneWater Learning Academy<h4>
+  //     <p>Your Profile has been approved for Author. You can now Post Blogs. Login and Add Your Blog.
+  //     `, // html body
+  // };
+  // sgMail.send(msg)
+  // .then(result=> {
+  //   console.log(result);
+  // })
+  // .catch(err=> {
+  //   console.log(err);
+  // });
 }
