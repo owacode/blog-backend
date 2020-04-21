@@ -294,9 +294,8 @@ class UpdateController {
 
 function resetPasswordUserConfirmation(email) {
   console.log('$$$$$$$$$', email, token);
-  nodeoutlook.sendEmail({
-    auth: nodemailerAuthCredential,
-    from: ' "OneWater " <OWACODE@onewateracademy.org> ',
+  const msg = {
+    from: ' OneWater <owa@onewaterxchange.org> ',
     to: email,
     subject: "Reset Password✔", // Subject line
     text: "Reset Password",
@@ -304,8 +303,13 @@ function resetPasswordUserConfirmation(email) {
       <h4>Reset Password For Blog Author<h4>
       <p>Click on the link to Reset Your Password <a href="https://onewater.herokuapp.com/onewater/recover-password/` + token + `">https://onewater.herokuapp.com/onewater/recover-password/` + token + `
       </a>`, // html body
-    onError: (e) => console.log(e),
-    onSuccess: (i) => console.log(i)
+  };
+  sgMail.send(msg)
+  .then(result=> {
+    console.log(result);
+  })
+  .catch(err=> {
+    console.log(err);
   });
 }
 

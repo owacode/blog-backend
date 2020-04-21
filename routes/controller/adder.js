@@ -15,11 +15,13 @@ const updateController = require('./update');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const nodeoutlook = require('nodejs-nodemailer-outlook');
-const nodemailerAuthCredential = {
-  user: "OWACODE@onewateracademy.org",
-  pass: "Panda@21"
-}
+const sgMail = require('@sendgrid/mail');
+// const nodemailerAuthCredential = {
+//   user: "OWACODE@onewateracademy.org",
+//   pass: "Panda@21"
+// }
 
+sgMail.setApiKey('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');
 let token;
 
 class AdderOperationController {
@@ -475,52 +477,30 @@ function saltHashPassword(userpassword) {
 
 function verifyUser(email) {
   console.log('$$$$$$$$$', email, token);
-  nodeoutlook.sendEmail({
-    auth: nodemailerAuthCredential,
-    from: ' "OneWater " <OWACODE@onewateracademy.org> ',
+  const msg = {
+    from: ' OneWater <owa@onewaterxchange.org> ',
     to: email,
     subject: "Verify Account✔", // Subject line
     text: "Verify your Email for OneWater Author",
     html: `
-      <h4>Hello Welcome to OneWater<h4>
-      <p>Click on the link to Verify Your Account <a href="https://onewater-blogapi.herokuapp.com/activate/` + token + `">https://onewater-blog-api.herokuapp.com/activate/` + token + `
-      </a>
+      <h4>Hello!<h4>
+      <p>Thank you for signing up and joining the OneWater Academy.Please click on the link to Verify Your Account <a href="https://onewater-blogapi.herokuapp.com/activate/` + token + `">https://onewater-blog-api.herokuapp.com/activate/` + token + `
+      </a></p>
       `, // html body
-    onError: (e) => console.log(e),
-    onSuccess: (i) => console.log(i)
-  });
-}
-
-function AdminMailForBlog(values) {
-  console.log(values, 'author maillllllllllllllllll$$$')
-  let sendingMail = {
-    from: ' "OneWater " <onewateracademy1@gmail.com> ',
-    to: 'Atharva.mungee@onewateracademy.org',
-    subject: "New Blog Added", // Subject line
-    text: "A new Author Profile has been added Please Check AdminPanel.",
-    html: `
-      <h4>Blog Added By ${values.authorname}<h4>
-      <h4>Title: ${values.title}<h4>
-      <p> A new Blog has been added Please Check AdminPanel. </p>` // html body
-  }
-
-  transporter.sendMail(sendingMail, (error, info) => {
-    if (error) {
-      console.log("Error Hit&&&&")
-      console.log('Nodemoalier Error%%%%%%%%%', error);
-    }
-    else {
-      console.log("Success Hit&&&&")
-      console.log("Email Sent!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", info.response);
-    }
+  };
+  sgMail.send(msg)
+  .then(result=> {
+    console.log(result);
   })
+  .catch(err=> {
+    console.log(err);
+  });
 }
 
 function approveAuthorMail(email) {
   console.log('$$$$$$$$$', email);
-  nodeoutlook.sendEmail({
-    auth: nodemailerAuthCredential,
-    from: ' "OneWater " <OWACODE@onewateracademy.org> ',
+  const msg = {
+    from: ' OneWater <owa@onewaterxchange.org> ',
     to: email,
     subject: "Profile Approved✔", // Subject line
     text: "Your Profile has been approved for Author",
@@ -528,7 +508,12 @@ function approveAuthorMail(email) {
       <h4> Congratulations Hello Welcome to OneWater Learning Academy<h4>
       <p>Your Profile has been approved for Author. You can now Post Blogs. Login and Add Your Blog.
       `, // html body
-    onError: (e) => console.log(e),
-    onSuccess: (i) => console.log(i)
+  };
+  sgMail.send(msg)
+  .then(result=> {
+    console.log(result);
+  })
+  .catch(err=> {
+    console.log(err);
   });
 }
