@@ -13,6 +13,7 @@ const blog = mongoose.Schema({
   contributor_name:{type: String,required:true},
   contributor_company:{type: String,required:true},
   likes:[],
+  likecount:{type:Number},
   image:{type: String,required:true}
 });
 

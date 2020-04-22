@@ -24,6 +24,20 @@ routes.post('/like', (req, res) => {
     }));
 })
 
+// Like the Landing Blog
+routes.post('/like-homeblog', (req, res) => {
+  console.log(req.body, 'test');
+  adderController.likeTheBlog(req.body)
+    .then(result => {
+      updateController.updateLikeHomeBlog(req.body.blogid)
+      res.redirect(`https://onewater-auth.herokuapp.com/likeblog?userid=${req.body.userid}&blogid=${req.body.blogid}`)
+    })
+    .catch(err => res.status(401).json({
+      status: "error for 3000",
+      payload: err
+    }));
+})
+
 // Route for adding Videos by Author
 routes.post('/post-video', (req, res) => {
   adderController.addVideoByAuthor(req.body)
@@ -446,7 +460,7 @@ routes.post('/login', async (req, res) => {
 routes.get('/activate/:token', (req, res) => {
   adderController.verifyMail(req.params)
     .then(result => {
-      res.status(200).redirect('http://onewater.herokuapp.com/thankyou-author');
+      res.status(200).redirect('http://onewateracademy.org/onewater/thankyou-author');
     })
     .catch(err => {
       res.status(400).json({
