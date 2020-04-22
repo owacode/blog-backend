@@ -40,6 +40,20 @@ class AdderOperationController {
     })
   }
 
+    // Like a Landing Blog
+    likeTheLandingBlog(values) {
+      return new Promise((resolve, res) => {
+        HomeBlog.findByIdAndUpdate({ _id: values.blogid }, {
+          $addToSet: { likes: values.userid }
+        })
+          .then(result => {
+            console.log(result, 'after like')
+            resolve(result);
+          })
+          .catch(err => reject(err));
+      })
+    }
+
   // This methord is for adding the blogid to the author account (only for approved blogs)
   addLikeBlogToUser(values) {
     ApprovedAuthor.findByIdAndUpdate({ _id: values.blogid }, {

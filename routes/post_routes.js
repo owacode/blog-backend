@@ -27,10 +27,10 @@ routes.post('/like', (req, res) => {
 // Like the Landing Blog
 routes.post('/like-homeblog', (req, res) => {
   console.log(req.body, 'test');
-  adderController.likeTheBlog(req.body)
+  adderController.likeTheLandingBlog(req.body)
     .then(result => {
       updateController.updateLikeHomeBlog(req.body.blogid)
-      res.redirect(`http://localhost:3000/likeblog?userid=${req.body.userid}&blogid=${req.body.blogid}`)
+      res.redirect(`https://onewater-auth.herokuapp.com/likeblog?userid=${req.body.userid}&blogid=${req.body.blogid}`)
     })
     .catch(err => res.status(401).json({
       status: "error for 3000",
