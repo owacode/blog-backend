@@ -300,7 +300,13 @@ routes.post('/deleteunapproveblog', (req, res) => {
 
 
 // Route for UnApproved Author Profile
-routes.post('/unapproved-author', async (req, res) => {
+routes.post('/unapproved-author', upload.single('image'), async (req, res) => {
+  const result = await cloudinary.v2.uploader.upload(req.file.path)
+  .catch((err) => {
+    new Promise(() => { throw new Error('exception!'); });
+    console.log(err);
+  })
+  req.body.imageurl = result.url;
   adderController.addUnApprovedAuthor(req.body)
     .then(result => {
       // adderController.addAuthorToMain(result);

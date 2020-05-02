@@ -288,16 +288,17 @@ class AdderOperationController {
         .then(result => {
           const author = new NotApprovedAuthor({
             name: values.name,
-            bio: 'null',
-            image: 'null',
-            linkedIn_id: 'null',
-            twitter_id: 'null',
+            bio: values.bio,
+            image: values.imageurl,
+            location: values.location,
+            linkedIn_id: values.linkedIn,
+            twitter_id: values.twitter,
             email: values.email,
             date_added: getTime(),
             main_id: result._id,
-            verified: false,
+            verified: true,
             token: result.token,
-            form_filled: false,
+            form_filled: true,
             salt: result.salt,
             password: result.password,
           });
@@ -305,7 +306,7 @@ class AdderOperationController {
         })
 
         .then(result => {
-          verifyUser(values.email);
+          // verifyUser(values.email);
           const data = {
             unapproved_id: result._id,
             mainid: result.main_id
