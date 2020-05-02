@@ -368,19 +368,19 @@ class AdderOperationController {
           salt = result.salt;
           hashpass = result.passwordHash;
           const blog = new AllAuthor({
-            approved_id: 'null',
-            bio: 'null',
+            name: values.name,
+            email: values.email,
+            bio: values.bio,
+            image: values.imageurl,
+            location: values.location,
+            linkedIn_id: values.linkedIn,
+            twitter_id: values.twitter,
             rejected: false,
             status: 'pending',
-            name: values.name,
             date_added: getTime(),
-            linkedIn_id: 'null',
-            twitter_id: 'null',
-            email: values.email,
-            image: 'null',
-            verified: false,
+            verified: true,
             token: token,
-            form_filled: false,
+            form_filled: true,
             salt: salt,
             password: hashpass,
           })
