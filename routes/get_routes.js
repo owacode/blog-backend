@@ -6,6 +6,51 @@ const deleteController = require('./controller/delete');
 const updateController = require('./controller/update');
 const fetchController = require('./controller/fetch');
 
+
+routes.get('/likeblog',(req, res)=>{
+  // console.log('hit 4000')
+  const data={
+    userid:req.query.userid,
+    blogid:req.query.blogid
+  }
+  // console.log(data,'4000')
+  updateController.addLikedBLogToUser(data)
+  .then(result=> {
+    res.json({
+      status:'success',
+      msg:'Liked BLog Added to User Profile'
+    })
+  })
+
+  .catch(err=>{
+    res.json({
+      status:'error',
+      msg:'Error in Adding Liked Blog to User Profile'
+    })
+  })
+})
+
+routes.get('/likedbyuser',(req, res)=>{
+  const data={
+    userid:req.query.userid,
+    blogid:req.query.blogid
+  }
+  console.log(data,'%%%')
+  fetchController.getUserLikedParticularBlog(data)
+  .then(result=>{
+    res.json({
+      status:'success',
+      result:result
+    })
+  })
+  .catch(err=>{
+    res.json({
+      status:'error',
+      error:err
+    })
+  })
+})
+
 // Route for Getting Videos
 routes.get('/video', (req, res) => {
   console.log('hit video')

@@ -22,7 +22,6 @@ class UpdateController {
   updateLikeBlog(id) {
     console.log('hitfefe', id)
     return new Promise((resolve, reject) => {
-
       ApprovedBlog.update(
         { _id: id },
         { $inc: { 'likecount': 1 } })
@@ -41,6 +40,22 @@ class UpdateController {
           { $inc: { 'likecount': 1 } })
           .then(response => { console.log('Like Incremented blog'); })
           .catch(err => console.log(err));
+      })
+    }
+
+    addLikedBLogToUser(values){
+      // console.log(values,'iii')
+      return new Promise((resolve, reject)=>{
+  
+        ApprovedAuthor.findByIdAndUpdate({_id:values.userid},{$addToSet:{liked_blog:values.blogid}})
+        .then(result =>{
+          console.log(result)
+          resolve(result);
+        })
+        .catch(err =>{
+          reject(err);
+        });
+  
       })
     }
 

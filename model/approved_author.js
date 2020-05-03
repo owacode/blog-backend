@@ -12,13 +12,13 @@ const author = mongoose.Schema({
   password:{type: String},
   salt:{type: String},
   token:{type: String},
-  interest_category:[],
   main_id:{type:String},
   verified:{type:Boolean},
   form_filled:{type:Boolean},
+  //like blog
+  liked_blog:[],
   // Social Accounts
   linkedIn_id:{type: String},
-  email:{type: String},
   twitter_id:{type: String},
   // BLogs added by user
   // it will contain the id of the blogs

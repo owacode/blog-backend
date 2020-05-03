@@ -249,10 +249,15 @@ class AdderOperationController {
     })
   }
 
-  // This methord is for adding the blogid to the author account (only for approved blogs)
+  // This methord is for adding the blogid to the author account and increment the added blog count (only for approved blogs)
   addApprovedBlogToUser(values) {
     ApprovedAuthor.findByIdAndUpdate({ _id: values.authorid }, {
       $addToSet: { approved_blogs_added: values.blogid }
+    })
+    .then(result=> {
+      return ApprovedAuthor.findByIdAndUpdate({ _id: values.authorid }, {
+        $inc: { 'approved_blogs_count': 1 }
+      })
     })
       .then(result => console.log("Adding blog to account Successfull", result))
       .catch(err => console.log("Adding blog to account Error", err));

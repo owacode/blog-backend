@@ -10,6 +10,23 @@ const AllAuthor = require('../../model/all_author');
 
 const AuthorVideo = require('../../model/author_video');
 class FetchController {
+
+  
+  getUserLikedParticularBlog(values) {
+    return new Promise((resolve, reject) => {
+
+      ApprovedAuthor.find({ $and: [{ _id: values.userid }, { liked_blog: values.blogid }] })
+        .then(result => {
+          console.log(result.length, '(((((')
+          resolve(result.length);
+        })
+        .catch(err => {
+          reject(err);
+        });
+
+    })
+  }
+
   // Fetching all Blogs from DB
   getApprovedBlogs(value) {
     console.log(value, 'aaa')
