@@ -257,7 +257,7 @@ class FetchController {
 
     getTopAuthor() {
     return new Promise((resolve, reject) => {
-      ApprovedAuthor.find({}).sort({ "approved_blogs_count": -1 }).limit(3)
+      ApprovedAuthor.find({}).sort({ "approved_blogs_count": -1 }).limit(4)
         .then(result => {
           return resolve(result);
         })
