@@ -420,7 +420,7 @@ class AdderOperationController {
           const token = jwt.sign({ email: result[0].email, userid: result[0]._id }, '%%%$$#book!*!(se!!ing^^&min%$#*)((//or'
           )
           console.log(result[0]._id, result[0].unapproved_id)
-          resolve({ token: token, email: userdata.email, image: result[0].image, form_filled: result[0].form_filled, mainid: result[0]._id, id: result[0].unapproved_id, approvedid: result[0].approved_id, name: result[0].name });
+          resolve({ token: token, user: result[0]});
         })
     })
   }

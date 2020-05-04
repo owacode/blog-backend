@@ -2,8 +2,8 @@ const mongoose= require('mongoose');
 const validator=require('mongoose-unique-validator');
 
 const author = mongoose.Schema({
-  approved_id:{type:String},
-  unapproved_id:{type:String},
+  approved_id:{type:String, default: null},
+  unapproved_id:{type:String, default: null},
   name:{type: String},
   bio:{type: String},
   image:{type: String},
