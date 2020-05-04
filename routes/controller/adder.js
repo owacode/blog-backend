@@ -405,10 +405,8 @@ class AdderOperationController {
   // Login Function
   login(userdata) {
     return new Promise((resolve, reject) => {
-      console.log(userdata);
       AllAuthor.find({ email: userdata.email })
         .then(result => {
-          console.log('%%%%%%%', result)
           if (result.length == 0) {
             return reject('No User Found')
           }
@@ -416,10 +414,9 @@ class AdderOperationController {
           if (result[0].password !== passdata.passwordHash) {
             return reject("Incorrect Password");
           }
-          if (result[0].verified == false) return reject("User Email not Verified");
+          if (result[0].approved_id == null) return reject("User Profile Not Approved");
           const token = jwt.sign({ email: result[0].email, userid: result[0]._id }, '%%%$$#book!*!(se!!ing^^&min%$#*)((//or'
           )
-          console.log(result[0]._id, result[0].unapproved_id)
           resolve({ token: token, user: result[0]});
         })
     })
