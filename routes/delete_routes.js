@@ -20,6 +20,23 @@ routes.post('/unapprove-blog',(req, res)=> {
     })
 })
 
+routes.delete('/home-blog/:id',(req, res)=> {
+    console.log(req.params.id);
+    deleteController.deleteHomeBlog(req.params.id)
+    .then(result=>{
+        res.json({
+            status: 'success',
+            msg:"Home Blog Deleted"
+        })
+    })
+    .catch(err=>{
+        res.json({
+            status: 'success',
+            msg:"Home Blog Cannot be Deleted"
+        })
+    })
+})
+
 // routes.delete('/approve-blog',(req, res)=> {
 //     deleteController.deleteApprovedBlogFromAdmin(req.body)
 //     .then(result=>{

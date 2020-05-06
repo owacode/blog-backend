@@ -3,6 +3,7 @@ const NotApprovedAuthor = require('../../model/unapproved_author');
 const ApprovedAuthor = require('../../model/approved_author');
 const ApprovedBlog = require('../../model/approved_blog');
 const AllBlog = require('../../model/all_blog');
+const HomeBlog = require('../../model/homeblog');
 const updateController = require('./update');
 const SavedBlog = require('../../model/savedblog');
 
@@ -105,6 +106,20 @@ class DeleteOperationController {
       NotApprovedBlog.findByIdAndDelete({ _id: values.unapproveid })
         .then(result => {
           console.log("Blog deleted from UnApproved", result);
+          return resolve(result);
+        })
+        .catch(err => {
+          console.log("Error in Deleting Blog", err);
+          return reject(err);
+        })
+    });
+  }
+
+  deleteHomeBlog(id) {
+    return new Promise((resolve, reject) => {
+      HomeBlog.findByIdAndDelete({ _id: id })
+        .then(result => {
+          console.log("Home Blog deleted");
           return resolve(result);
         })
         .catch(err => {
