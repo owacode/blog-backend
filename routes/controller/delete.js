@@ -50,6 +50,13 @@ class DeleteOperationController {
       updateController.deleteApproveBlog(values.mainid);
 
       ApprovedBlog.findByIdAndDelete({ _id: values.approveid })
+      .then(result=> {
+        return ApprovedAuthor.findByIdAndUpdate({_id:values.author_id},{
+          $inc: { 'approved_blogs_count': -1 }
+         }
+
+        )
+      })
         .then(result => {
           console.log("Blog deleted from Approved", result);
           return resolve(result);

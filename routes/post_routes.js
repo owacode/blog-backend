@@ -69,15 +69,8 @@ routes.post('/addimage', upload.single('image'), async (req, res) => {
 })
 
 // Route for Blog to Home The Home Page Blogs ( 3 Blogs )
-routes.post('/homeblog', upload.single('image'), async (req, res) => {
+routes.post('/homeblog', (req, res) => {
   console.log(req.body);
-  const result = await cloudinary.v2.uploader.upload(req.file.path)
-    .catch((err) => {
-      new Promise(() => { throw new Error('exception!'); });
-      console.log(err);
-    })
-  const imagepath = result.url;
-  req.body.imageurl = imagepath;
   adderController.addHomeBlog(req.body)
     .then(result => {
       res.status(200).json({

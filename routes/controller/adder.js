@@ -88,12 +88,10 @@ class AdderOperationController {
     return new Promise((resolve, reject) => {
       const blog = new HomeBlog({
         title: value.title,
-        category: value.category,
-        contributor_name: value.contributor_name,
-        contributor_company: value.contributor_company,
+        // category: value.category,
         date_added: getTime(),
         desc: value.desc,
-        image: value.imageurl
+        image: value.image
       })
       blog.save()
         .then((result) => {
