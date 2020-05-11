@@ -88,7 +88,9 @@ class AdderOperationController {
     return new Promise((resolve, reject) => {
       const blog = new HomeBlog({
         title: value.title,
-        // category: value.category,
+        author_id: value.author_id,
+        author_image: value.author_image,
+        author_name: value.author_name,
         date_added: getTime(),
         desc: value.desc,
         image: value.image
