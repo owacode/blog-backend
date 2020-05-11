@@ -93,6 +93,7 @@ class AdderOperationController {
         author_name: value.author_name,
         date_added: getTime(),
         desc: value.desc,
+        likecount: 0,
         image: value.image
       })
       blog.save()
