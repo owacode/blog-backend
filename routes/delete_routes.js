@@ -55,7 +55,6 @@ routes.delete('/unapproved-author',(req, res)=> {
 })
 
 routes.delete('/approved-author',(req, res)=> {
-    // console.log(req.params.id);
     deleteController.deleteApprovedAuthor(req.body)
     .then(result=>{
         res.json({
