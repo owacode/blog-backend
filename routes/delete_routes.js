@@ -37,6 +37,40 @@ routes.delete('/home-blog/:id',(req, res)=> {
     })
 })
 
+routes.delete('/unapproved-author',(req, res)=> {
+    // console.log(req.params.id);
+    deleteController.deleteUnapprovedAuthor(req.body)
+    .then(result=>{
+        res.json({
+            status: 'success',
+            msg:"UnApproved Author Blog Deleted"
+        })
+    })
+    .catch(err=>{
+        res.json({
+            status: 'success',
+            msg:"UnApproved Author Cannot be Deleted"
+        })
+    })
+})
+
+routes.delete('/approved-author',(req, res)=> {
+    // console.log(req.params.id);
+    deleteController.deleteApprovedAuthor(req.body)
+    .then(result=>{
+        res.json({
+            status: 'success',
+            msg:"Approved Author Deleted"
+        })
+    })
+    .catch(err=>{
+        res.json({
+            status: 'success',
+            msg:"Approved Author Cannot be Deleted"
+        })
+    })
+})
+
 // routes.delete('/approve-blog',(req, res)=> {
 //     deleteController.deleteApprovedBlogFromAdmin(req.body)
 //     .then(result=>{

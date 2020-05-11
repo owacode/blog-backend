@@ -2,7 +2,7 @@ const NotApprovedBlog = require('../../model/unapproved_blog');
 const NotApprovedAuthor = require('../../model/unapproved_author');
 const ApprovedAuthor = require('../../model/approved_author');
 const ApprovedBlog = require('../../model/approved_blog');
-const AllBlog = require('../../model/all_blog');
+const AllAuthor = require('../../model/all_author');
 const HomeBlog = require('../../model/homeblog');
 const updateController = require('./update');
 const SavedBlog = require('../../model/savedblog');
@@ -83,12 +83,41 @@ class DeleteOperationController {
 
   // This methord is for deleting the unpproved author
   // when we approved that author profile
-  deleteUnapprovedAuthor(id) {
+  deleteUnapprovedAuthor(data) {
     return new Promise((resolve, reject) => {
       console.log('hit delete')
-      NotApprovedAuthor.findByIdAndDelete({ _id: id })
+      NotApprovedAuthor.findByIdAndDelete({ _id: data.id })
+        .then(result=> {
+          return AllAuthor.findByIdAndUpdate({_id: data.mainid}, {
+            $set: {
+              status: 'deleted'
+            }
+          })
+        })
         .then(result => {
           console.log("Author Profile deleted from UnApproved", result);
+          resolve(result);
+        })
+        .catch(err => {
+          console.log("Error in Deleting Author Profile", err);
+          reject(err);
+        })
+    })
+  }
+
+  deleteApprovedAuthor(data) {
+    return new Promise((resolve, reject) => {
+      console.log('hit delete')
+      ApprovedAuthor.findByIdAndDelete({ _id: data.id })
+      .then(result=> {
+        return AllAuthor.findByIdAndUpdate({_id: data.mainid}, {
+          $set: {
+            status: 'deleted'
+          }
+        })
+      })
+        .then(result => {
+          console.log("Author Profile deleted from Approved", result);
           resolve(result);
         })
         .catch(err => {
