@@ -7,7 +7,7 @@ const getblogs = require('./routes/get_routes');
 const deleteblogs = require('./routes/delete_routes');
 app.use(bodyParser.json());
 
-const db=mongoose.connect( "mongodb+srv://onewater:onewater123@cluster0-hmjdu.mongodb.net/onewater")
+mongoose.connect( "mongodb+srv://onewater:onewater123@cluster0-hmjdu.mongodb.net/onewater")
         .then(()=>
         {console.log("Connection to MongoDB is Successfull !");
     })
