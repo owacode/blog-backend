@@ -327,10 +327,10 @@ class AdderOperationController {
   // This is for approving the Author
   // to post the blog by approving his profile
   addApprovedAuthor(values) {
-    console.log("approve hit")
+    console.log("approve hit",values)
     return new Promise((resolve, reject) => {
       // First Deleting the Auhor Profile from UnApproved Collection
-      deleteController.deleteUnapprovedAuthor(values.id)
+      deleteController.unapprovedAuthorWhenApproved(values.id)
         .then(result => {
           approveAuthorMail(result.email);
           console.log(result, 'hit app author')

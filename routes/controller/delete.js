@@ -81,8 +81,25 @@ class DeleteOperationController {
       })
   }
 
+  // This methord is called when we Approve an Author, for that we need to delete it from unapproved collection
+  unapprovedAuthorWhenApproved(id) {
+    return new Promise((resolve, reject) => {
+      console.log('hit delete')
+      NotApprovedAuthor.findByIdAndDelete({ _id: id })
+        .then(result => {
+          console.log("Author Profile deleted from UnApproved", result);
+          resolve(result);
+        })
+        .catch(err => {
+          console.log("Error in Deleting Author Profile", err);
+          reject(err);
+        })
+    })
+  }
+
   // This methord is for deleting the unpproved author
   // when we approved that author profile
+
   deleteUnapprovedAuthor(data) {
     return new Promise((resolve, reject) => {
       console.log('hit delete')
