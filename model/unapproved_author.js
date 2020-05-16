@@ -6,6 +6,7 @@ const author = mongoose.Schema({
   bio:{type: String},
   image:{type: String},
   date_added:{type: Date},
+  mobile_no:{type: Number},
   location:{type: String},
   linkedIn_id:{type: String},
   twitter_id:{type: String},

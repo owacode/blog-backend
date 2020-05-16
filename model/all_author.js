@@ -5,6 +5,7 @@ const author = mongoose.Schema({
   approved_id:{type:String, default: null},
   unapproved_id:{type:String, default: null},
   name:{type: String},
+  mobile_no:{type: Number},
   bio:{type: String},
   image:{type: String},
   date_added:{type: Date},
