@@ -4,7 +4,7 @@
     "cloudinary": "^1.14.0",
     "core-js": "^2.5.4",
     "express": "^4.17.1",
-    "express-jwt": "^5.3.1",
+    "express-jwt": "^6.0.0",
     "jw-angular-social-buttons": "^1.0.0",
     "jwks-rsa": "^1.6.0",
     "mongodb-autoincrement": "^1.0.1",
